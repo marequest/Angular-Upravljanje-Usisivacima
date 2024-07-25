@@ -1,0 +1,69 @@
+<app-custom-alert #customAlert></app-custom-alert>
+
+<div>
+  <h2><b>Search Vacuums</b></h2>
+  <!-- Rest of your component HTML -->
+
+  <form>
+    <div class="mb-3 row">
+      <div class="col-md-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="name" (ngModelChange)="search()">
+      </div>
+      <div class="col-md-3">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" name="status" [(ngModel)]="status" (ngModelChange)="search()">
+          <option selected value="ALL">ALL</option>
+          <option value="ON">ON</option>
+          <option value="OFF">OFF</option>
+          <option value="IN_PROGRESS">IN_PROGRESS</option>
+          <option value="DISCHARGING">DISCHARGING</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="dateFrom">Date From</label>
+        <input type="date" class="form-control" id="dateFrom" name="dateFrom" placeholder="Date From" [(ngModel)]="dateFrom" (ngModelChange)="search()">
+      </div>
+      <div class="col-md-3">
+        <label for="dateTo">Date To</label>
+        <input type="date" class="form-control" id="dateTo" name="dateTo" placeholder="Date To" [(ngModel)]="dateTo" (ngModelChange)="search()">
+      </div>
+    </div>
+  </form>
+
+  <div class="container mt-4">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Create Date</th>
+        <th>Status</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let vacuum of vacuumItems">
+        <td>{{ vacuum.id }}</td>
+        <td>{{ vacuum.name }}</td>
+        <td>{{ vacuum.createdDate | date:'short' }}</td>
+        <td>{{ vacuum.status }}</td>
+        <td>{{ vacuum.active }}</td>
+        <td>
+          <button type="button" class="btn btn-success" [disabled]="!authService.userPermissions.includes('can_start_vacuum')"
+                  (click)="startVacuum(vacuum.id)">Start</button>
+          <button type="button" class="btn btn-danger" [disabled]="!authService.userPermissions.includes('can_stop_vacuum')"
+                  (click)="stopVacuum(vacuum.id)">Stop</button>
+          <button type="button" class="btn btn-info" [disabled]="!authService.userPermissions.includes('can_discharge_vacuum')"
+                  (click)="dischargeVacuum(vacuum.id)">Discharge</button>
+          <button type="button" class="btn btn-light" [disabled]="!authService.userPermissions.includes('can_schedule_vacuum')"
+                  (click)="scheduleOperation(vacuum.id)">Schedule</button>
+          <button type="button" class="btn btn-outline-danger" [disabled]="!authService.userPermissions.includes('can_remove_vacuums')"
+                  (click)="removeVacuum(vacuum.id)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

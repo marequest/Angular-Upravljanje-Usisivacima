@@ -1,0 +1,8 @@
+<div *ngIf="show" class="alert alert-{{ type }} alert-dismissible fade show" [ngClass]="{'centered': showConfirm}" role="alert">
+  <div class="alert-content">{{ message }}</div>
+  <div *ngIf="showConfirm" class="alert-buttons">
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onConfirm()">Okay</button>
+  </div>
+  <button *ngIf="!showConfirm" type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+</div>

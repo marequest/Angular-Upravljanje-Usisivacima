@@ -1,0 +1,38 @@
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a [routerLink]="'/'" class="navbar-brand">Usisivaci</a>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a [routerLink]="'/'" class="nav-link active" aria-current="page">Home</a>
+          <a [routerLink]="'/search-vacuums'" class="nav-link active" aria-current="page">Search Vacuums</a>
+          <a [routerLink]="'/add-vacuum'" class="nav-link active" aria-current="page">Add Vacuum</a>
+          <a [routerLink]="'/error-history'" class="nav-link active" aria-current="page">Error History</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+          <button type="button" [routerLink]="'/login'" class="btn btn-primary me-2" [disabled]="isLoggedIn()" aria-current="page">Log In</button>
+<!--          <button type="button" [routerLink]="'/signup'" class="btn btn-outline-primary disabled me-2" aria-current="page">Sign Up</button>-->
+          <button type="button" class="btn btn-danger me-4" aria-current="page" [disabled]="isLoggedOut()" (click)="logout()">Log Out</button>
+
+          <div class="d-flex">
+            <div *ngIf="getUserName() then show else noShow"></div>
+            <ng-template #show>
+              <p style="color:gray;"> {{getUserName()}} </p>
+            </ng-template>
+            <ng-template #noShow>
+              <p style="color:gray;"></p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container pt-3">
+  <router-outlet></router-outlet>
+</div>

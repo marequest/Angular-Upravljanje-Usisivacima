@@ -1,0 +1,20 @@
+<app-custom-alert #customAlert></app-custom-alert>
+
+<h2><b>Add Vacuums</b></h2>
+<div>
+  <form #vacuumForm="ngForm" (ngSubmit)="addVacuum(vacuumForm)">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="name">Vacuum Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Vacuum Name" [(ngModel)]="name" required minlength="1" #nameInput="ngModel">
+        <div *ngIf="nameInput?.errors?.['required'] && (nameInput.dirty || nameInput.touched)" class="text-danger">
+          Name is required.
+        </div>
+        <div *ngIf="nameInput?.errors?.['minlength'] && (nameInput.dirty || nameInput.touched)" class="text-danger">
+          Name must be at least 1 character long.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="vacuumForm.invalid || !authService.userPermissions.includes('can_add_vacuum')">Add Vacuum</button>
+  </form>
+</div>

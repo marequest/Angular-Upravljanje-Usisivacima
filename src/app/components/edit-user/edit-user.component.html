@@ -1,0 +1,86 @@
+<app-custom-alert #customAlert></app-custom-alert>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center mb-4"><b>Edit User</b></h2>
+      <form [formGroup]="userForm" (ngSubmit)="submitEdit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Name" formControlName="firstName">
+            <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="text-danger">
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">Surname</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Surname" formControlName="lastName">
+            <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="text-danger">
+              Surname is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="username">Email address</label>
+            <input type="text" class="form-control" id="username" placeholder="Email" formControlName="username">
+            <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="text-danger">
+              Valid email is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><b>Permissions</b></label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_read_users" formControlName="can_read_users">
+            <label class="form-check-label" for="can_read_users">Can read users</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_create_users" formControlName="can_create_users">
+            <label class="form-check-label" for="can_create_users">Can create users</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_update_users" formControlName="can_update_users">
+            <label class="form-check-label" for="can_update_users">Can update users</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_delete_users" formControlName="can_delete_users">
+            <label class="form-check-label" for="can_delete_users">Can delete users</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_search_vacuum" formControlName="can_search_vacuum">
+            <label class="form-check-label" for="can_search_vacuum">Can search vacuum</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_start_vacuum" formControlName="can_start_vacuum">
+            <label class="form-check-label" for="can_start_vacuum">Can start vacuum</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_stop_vacuum" formControlName="can_stop_vacuum">
+            <label class="form-check-label" for="can_stop_vacuum">Can stop vacuum</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_discharge_vacuum" formControlName="can_discharge_vacuum">
+            <label class="form-check-label" for="can_discharge_vacuum">Can discharge vacuum</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_add_vacuum" formControlName="can_add_vacuum">
+            <label class="form-check-label" for="can_add_vacuum">Can add vacuum</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_remove_vacuums" formControlName="can_remove_vacuums">
+            <label class="form-check-label" for="can_remove_vacuums">Can remove vacuums</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="can_schedule_vacuum" formControlName="can_schedule_vacuum">
+            <label class="form-check-label" for="can_schedule_vacuum">Can schedule vacuum</label>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

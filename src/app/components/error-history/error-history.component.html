@@ -1,0 +1,21 @@
+<div>
+  <h2>Error Messages</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Usisivac</th>
+      <th>Date</th>
+      <th>Operation</th>
+      <th>Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let error of errorMessages">
+      <td>{{ error.usisivacId }}</td>
+      <td>{{ error.date | date:'short' }}</td>
+      <td>{{ error.operation }}</td>
+      <td>{{ error.message }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

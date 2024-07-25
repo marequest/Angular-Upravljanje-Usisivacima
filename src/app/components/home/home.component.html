@@ -1,0 +1,38 @@
+<app-custom-alert #customAlert></app-custom-alert>
+
+<div>
+  <h2><b>Home page</b></h2>
+
+  <button type="button" class="btn btn-primary" [disabled]="!authService.userPermissions.includes('can_create_users')" (click)="createUser()">Add User</button>
+  <div class="container mt-4">
+    <table class="table" style="width: 100%; margin: auto;">
+      <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Permissions</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userItems">
+        <td>{{ user.userId }}</td>
+        <td><a class="link-opacity-100" href="javascript:void(0)" [class.disabled]="!authService.userPermissions.includes('can_update_users')"
+               (click)="setSelected(user)">{{ user.username }}</a></td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>
+          <span *ngFor="let permission of user.permissions.split(',')" class="badge bg-primary mx-1">{{ permission }}</span>
+        </td>
+        <td><button type="button" class="btn btn-outline-danger" [disabled]="!authService.userPermissions.includes('can_delete_users')"
+                    (click)="deleteUser(user.userId)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noPermissionBlock>
+    <p>Nemas pravo da citas users</p>
+  </ng-template>
+</div>

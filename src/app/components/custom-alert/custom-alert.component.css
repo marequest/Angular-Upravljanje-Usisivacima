@@ -1,0 +1,31 @@
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+}
+
+.alert.centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  width: 30em; /* Adjust the width as needed */
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.alert .btn {
+  margin-left: 10px;
+}
+
+.alert .alert-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.alert-buttons {
+  margin-top: 30px;
+}
